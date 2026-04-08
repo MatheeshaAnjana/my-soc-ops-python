@@ -16,7 +16,6 @@
         {%- else %} bg-white text-gray-700 active:bg-gray-100
         {%- endif %}
         {%- if square.is_free_space %} font-bold text-sm{% endif %}"
-        aria-pressed="{{ 'true' if square.is_marked else 'false' }}"
         aria-label="{{ 'Free space' if square.is_free_space else square.text }}">
         <span class="wrap-break-word hyphens-auto">{{ square.text }}</span>
         {% if square.is_marked and not square.is_free_space %}

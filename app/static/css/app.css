@@ -1,13 +1,94 @@
+:root {
+    color-scheme: dark;
+    --bg: #05050d;
+    --surface: rgba(10, 15, 28, 0.92);
+    --surface-soft: rgba(14, 20, 38, 0.9);
+    --surface-strong: rgba(18, 24, 48, 0.96);
+    --border: rgba(124, 58, 237, 0.24);
+    --border-strong: rgba(34, 211, 238, 0.3);
+    --accent: #22d3ee;
+    --accent-strong: #8b5cf6;
+    --accent-soft: #7c3aed;
+    --text-primary: #e5e7ff;
+    --text-secondary: #94a3b8;
+    --text-muted: #8b95b2;
+    --text-highlight: #c7d2fe;
+}
+
 html,
 body,
 #app {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
 }
 
 body {
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 20%),
+                radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.12), transparent 18%),
+                linear-gradient(180deg, #060610 0%, #05050d 100%);
+    color: var(--text-primary);
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 8%),
+        radial-gradient(circle at 82% 16%, rgba(34, 211, 238, 0.1), transparent 12%),
+        radial-gradient(circle at 58% 78%, rgba(168, 85, 247, 0.08), transparent 10%);
+    z-index: -1;
+}
+
+#app {
+    position: relative;
+    z-index: 0;
+    min-height: 100%;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.glass-panel {
+    background: var(--surface);
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.16);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 50%, #ec4899 100%);
+    color: #05050d;
+    box-shadow: 0 0 28px rgba(34, 211, 238, 0.35), 0 0 60px rgba(139, 92, 246, 0.18);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+}
+
+.shadow-neon {
+    box-shadow: 0 0 35px rgba(124, 58, 237, 0.3), 0 24px 60px rgba(34, 211, 238, 0.14);
+}
+
+.text-glow {
+    text-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
 }
 
 /* Tailwind-like utility classes */
@@ -26,7 +107,7 @@ body {
 .justify-center { justify-content: center; }
 .justify-between { justify-content: space-between; }
 
-.grid { display: grid; }
+grid { display: grid; }
 .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .gap-1 { gap: 0.25rem; }
 
@@ -50,26 +131,26 @@ body {
 .mb-8 { margin-bottom: 2rem; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
-.bg-white { background-color: #ffffff; }
-.bg-gray-50 { background-color: #f9fafb; }
-.bg-gray-100 { background-color: #f3f4f6; }
-.bg-amber-100 { background-color: #fef3c7; }
-.bg-amber-200 { background-color: #fde68a; }
-.bg-accent { background-color: #2563eb; }
-.bg-marked { background-color: #dcfce7; }
-.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5); }
+.bg-white { background-color: rgba(10, 13, 28, 0.95); }
+.bg-gray-50 { background-color: rgba(12, 18, 33, 0.95); }
+.bg-gray-100 { background-color: rgba(14, 20, 38, 0.94); }
+.bg-amber-100 { background-color: rgba(29, 78, 216, 0.12); }
+.bg-amber-200 { background-color: rgba(56, 189, 248, 0.16); }
+.bg-accent { background-color: #22d3ee; }
+.bg-marked { background-color: rgba(34, 211, 238, 0.12); }
+.bg-black\/50 { background-color: rgba(0, 0, 0, 0.65); }
 
-.text-white { color: #ffffff; }
-.text-gray-500 { color: #6b7280; }
-.text-gray-600 { color: #4b5563; }
-.text-gray-700 { color: #374151; }
-.text-gray-800 { color: #1f2937; }
-.text-gray-900 { color: #111827; }
-.text-green-600 { color: #16a34a; }
-.text-green-800 { color: #166534; }
-.text-amber-500 { color: #f59e0b; }
-.text-amber-800 { color: #92400e; }
-.text-amber-900 { color: #78350f; }
+.text-white { color: #f8fafc; }
+.text-gray-500 { color: #8b95b2; }
+.text-gray-600 { color: #7c8abf; }
+.text-gray-700 { color: #64748b; }
+.text-gray-800 { color: #4f5e7a; }
+.text-gray-900 { color: #e5e7ff; }
+.text-green-600 { color: #22d3ee; }
+.text-green-800 { color: #38bdf8; }
+.text-amber-500 { color: #22d3ee; }
+.text-amber-800 { color: #60a5fa; }
+.text-amber-900 { color: #8b5cf6; }
 
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
@@ -86,17 +167,17 @@ body {
 
 .border { border-width: 1px; }
 .border-b { border-bottom-width: 1px; }
-.border-gray-200 { border-color: #e5e7eb; }
-.border-gray-300 { border-color: #d1d5db; }
-.border-amber-400 { border-color: #fbbf24; }
-.border-marked-border { border-color: #22c55e; }
+.border-gray-200 { border-color: rgba(124, 58, 237, 0.18); }
+.border-gray-300 { border-color: rgba(124, 58, 237, 0.24); }
+.border-amber-400 { border-color: rgba(34, 211, 238, 0.28); }
+.border-marked-border { border-color: rgba(34, 211, 238, 0.42); }
 
 .rounded { border-radius: 0.25rem; }
 .rounded-lg { border-radius: 0.5rem; }
 .rounded-xl { border-radius: 0.75rem; }
 
-.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
-.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+.shadow-sm { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); }
+.shadow-xl { box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25); }
 
 .space-y-2 > * + * { margin-top: 0.5rem; }
 
@@ -111,25 +192,14 @@ body {
 
 .aspect-square { aspect-ratio: 1 / 1; }
 
-.select-none { user-select: none; }
+.select-none { -webkit-user-select: none; user-select: none; }
 
 .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 .transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
 .duration-150 { transition-duration: 150ms; }
 
-button:active .active\:bg-gray-100 { background-color: #f3f4f6; }
-button:active .active\:bg-accent-light { background-color: #3b82f6; }
-
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
-    font: inherit;
-}
-
-button:disabled {
-    cursor: default;
-}
+button:active .active\:bg-gray-100 { background-color: rgba(255, 255, 255, 0.08); }
+button:active .active\:bg-accent-light { background-color: #60a5fa; }
 
 .wrap-break-word {
     word-break: break-word;
